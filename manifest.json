@@ -3,5 +3,6 @@
   "name": "2048 Мини 🎲",
   "description": "Классическая головоломка 2048 с дизайном в теме Fa",
   "version": "1.0.0",
-  "icon": "icon.svg"
+  "icon": "icon.svg",
+  "minRuntime": "0.4.79"
 }
