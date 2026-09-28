@@ -86,8 +86,14 @@
       {type:'text', data:String(value), style:{color:colors.text, fontSize:17, fontWeight:'w800'}}
     ]}};
   }
+  function exportState() {
+    var board = [], r, c, tile, maxTile = 0;
+    for (r = 0; r < 4; r++) { board.push([]); for (c = 0; c < 4; c++) { tile = at(r, c); board[r].push(tile ? tile.value : 0); if (tile && tile.value > maxTile) maxTile = tile.value; } }
+    jsr.exportState({score:score, best:best, maxTile:maxTile, status:gameOver ? 'over' : won ? 'won' : 'playing', emptyCells:emptyCells().length, board:board});
+  }
   function render() {
     var colors = theme();
+    exportState();
     var message = gameOver ? tr('over') : won ? tr('win') : tr('swipe');
     var messageColor = gameOver ? colors.error : won ? colors.accent2 : colors.muted;
     jsr.render({type:'container', decoration:{color:colors.background}, child:{type:'scroll', child:{type:'padding', padding:[20,16,28,16], child:{type:'column', crossAxisAlignment:'center', children:[
